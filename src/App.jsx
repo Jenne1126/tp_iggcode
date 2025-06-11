@@ -13,10 +13,21 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-      <h2>🎁 타임 프린세스 쿠폰 일괄 수령기</h2>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "2rem",
+        fontFamily: "Arial",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      <h2 style={{ marginBottom: "1.5rem" }}>🎁 타임 프린세스 쿠폰 일괄 수령기</h2>
       <CodeClaimer iggIds={iggIds} />
-      <IGGIDManager iggIds={iggIds} setIggIds={updateIggIds} />      
+      <IGGIDManager iggIds={iggIds} setIggIds={updateIggIds} />
     </div>
   );
 }

@@ -15,44 +15,45 @@ function IGGIDManager({ iggIds, setIggIds }) {
   };
 
   return (
-    <div style={{ marginBottom: "2rem" }}>
-      <h3>🧾 IGG ID 목록</h3>
-      <input
-        value={newId}
-        onChange={(e) => setNewId(e.target.value)}
-        placeholder="IGG ID 입력"
-        style={{ padding: "8px", width: "200px", marginRight: "8px" }}
-      />
-      <button
-        onClick={addId}
-        style={{
-          padding: "6px 12px",
-          fontSize: "14px",
-          cursor: "pointer",
-          // backgroundColor: "#2196F3",
-          color: "black",
-          border: "none",
-          borderRadius: "4px",
-        }}
-      >
-        ➕ 추가
-      </button>
+    <div style={{ width: "100%", maxWidth: "400px" }}>
+      <h3>📑 IGG ID 목록</h3>
+      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+        <input
+          value={newId}
+          onChange={(e) => setNewId(e.target.value)}
+          placeholder="IGG ID 입력"
+          style={{ flex: 1, padding: "8px" }}
+        />
+        <button
+          onClick={addId}
+          style={{
+            padding: "8px 12px",
+            fontSize: "14px",
+            backgroundColor: "#9c27b0",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          ➕ 추가
+        </button>
+      </div>
 
-      <ul style={{ marginTop: "1rem", paddingLeft: "20px" }}>
+      <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {iggIds.map((id) => (
-          <li key={id} style={{ marginBottom: "6px" }}>
-            {id}{" "}
+          <li key={id} style={{ marginBottom: "0.5rem" }}>
+            • {id}{" "}
             <button
               onClick={() => removeId(id)}
               style={{
-                padding: "4px 10px",
-                fontSize: "13px",
-                cursor: "pointer",
-                backgroundColor: "#f44336", // 빨간색
+                backgroundColor: "#f44336",
                 color: "white",
                 border: "none",
                 borderRadius: "4px",
+                padding: "4px 8px",
                 marginLeft: "8px",
+                cursor: "pointer",
               }}
             >
               삭제
