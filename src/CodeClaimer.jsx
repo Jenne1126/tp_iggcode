@@ -15,30 +15,33 @@ function CodeClaimer({ iggIds }) {
 
     for (let id of iggIds) {
       try {
-        const res = await axios.post(
-          "https://dut.igg.com/event/cdkey_ajax.php",
-          {
-            iggID: id,
-            cdkey: code,
-            lang: "kor",
-            gameCode: "tp",
-          }
-        );
+        const formData = new URLSearchParams();
+        formData.append("action", "claim_cdkey");
+        formData.append("cdkey", code);
+        formData.append("iggid", id);
+        formData.append("lang", "ko");
 
-        // 메시지 출력
-        if (res.data?.ret?.code === 0) {
-          newResults.push(`${id}: ✅ 성공 - ${res.data.ret.msg}`);
+        const res = await axios.post("/api/claim", formData.toString(), {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
+
+        const text = res.data;
+
+        if (text.includes("이미 수령하셨습니다")) {
+          newResults.push(`${id}: ⚠️ 이미 수령된 코드`);
+        } else if (text.includes("성공적으로 수령하셨습니다")) {
+          newResults.push(`${id}: ✅ 성공`);
+        } else if (text.includes("올바르지 않은 IGGID")) {
+          newResults.push(`${id}: ❌ IGG ID 오류`);
+        } else if (text.includes("존재하지 않는 코드")) {
+          newResults.push(`${id}: ❌ 유효하지 않은 코드`);
         } else {
-          newResults.push(`${id}: ❌ 실패 - ${res.data.ret?.msg || "알 수 없는 오류"}`);
+          newResults.push(`${id}: ❓ 기타 - ${text}`);
         }
       } catch (err) {
-        // 서버가 메시지를 보내준 경우
-        const serverMsg = err.response?.data?.ret?.msg;
-        if (serverMsg) {
-          newResults.push(`${id}: ❌ 실패 - ${serverMsg}`);
-        } else {
-          newResults.push(`${id}: ⚠️ 네트워크 오류 (${err.message})`);
-        }
+        newResults.push(`${id}: ⚠️ 네트워크 오류 (${err.message})`);
       }
     }
 
