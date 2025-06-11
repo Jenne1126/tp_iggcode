@@ -29,7 +29,7 @@ function CodeClaimer({ iggIds }) {
                   },
         });
 
-        const text = res.data;
+        const text = response.data;
 
         if (text.includes("이미 수령하셨습니다")) {
           newResults.push(`${id}: ⚠️ 이미 수령된 코드`);
