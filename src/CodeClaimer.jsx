@@ -66,7 +66,20 @@ function CodeClaimer({ iggIds }) {
   };
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+  <div
+    style={{
+      maxWidth: "600px",        // 최대 폭 제한
+      minWidth: "320px",        // 모바일 기준 최소 폭
+      margin: "2rem auto",      // 중앙 정렬
+      padding: "1.5rem",        // 안쪽 여백
+      fontSize: "1.1rem",       // 전체 글자 살짝 키움
+      width: "90%",             // 모바일에서 꽉 차게
+      boxSizing: "border-box",  // 패딩 포함
+      backgroundColor: "#fff",  // 흰 배경 (선택)
+      borderRadius: "8px",      // 살짝 둥글게 (선택)
+      boxShadow: "0 0 8px rgba(0,0,0,0.05)", // 살짝 그림자 (선택)
+    }}
+  >
       <h3>🎫 쿠폰 코드 입력</h3>
       <input
         value={code}
