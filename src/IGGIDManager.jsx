@@ -22,13 +22,13 @@ function IGGIDManager({ iggIds, setIggIds }) {
           value={newId}
           onChange={(e) => setNewId(e.target.value)}
           placeholder="IGG ID 입력"
-          style={{ flex: 1, padding: "8px" }}
+          style={{ flex: 1, fontSize: "1.5rem", padding: "8px" }}
         />
         <button
           onClick={addId}
           style={{
             padding: "8px 12px",
-            fontSize: "14px",
+            fontSize: "1.5rem",
             backgroundColor: "#9c27b0",
             color: "white",
             border: "none",

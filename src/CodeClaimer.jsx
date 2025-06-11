@@ -71,7 +71,7 @@ function CodeClaimer({ iggIds }) {
           value={code}
           onChange={(e) => setCode(e.target.value)}
           placeholder="쿠폰 코드 입력"
-          style={{ padding: "8px", flex: 1 }}
+          style={{ padding: "8px", fontSize: "1.5rem", flex: 1 }}
         />
         <button
           onClick={claimCode}
