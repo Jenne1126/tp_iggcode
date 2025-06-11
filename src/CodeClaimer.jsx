@@ -30,22 +30,32 @@ function CodeClaimer({ iggIds }) {
         });
 
         let text = response.data;
+        
+        if (typeof text !== "string") {
+            text = JSON.stringify(text);
+          }
+        
+        try {
+  const parsed = JSON.parse(text);
+  let msg = parsed.msg || "응답 메시지 없음";
 
-if (typeof text !== "string") {
-  text = JSON.stringify(text); 
+  // ✅ [-숫자] 제거
+  msg = msg.replace(/\[\-\d+\]/g, "").trim();
+
+  if (msg.includes("이미 수령하셨습니다") || msg.includes("보상을 수령하였습니다")) {
+    newResults.push(`${id}: ⚠️ ${msg}`);
+  } else if (msg.includes("성공적으로 수령하셨습니다")) {
+    newResults.push(`${id}: ✅ 성공`);
+  } else if (msg.includes("올바르지 않은 IGGID")) {
+    newResults.push(`${id}: ❌ IGG ID 오류`);
+  } else if (msg.includes("존재하지 않는 코드")) {
+    newResults.push(`${id}: ❌ 유효하지 않은 코드`);
+  } else {
+    newResults.push(`${id}: ❓ 기타 - ${msg}`);
+  }
+} catch (e) {
+  newResults.push(`${id}: ❓ 기타 (파싱 실패) - ${text}`);
 }
-
-        if (text.includes("이미 수령하셨습니다")) {
-          newResults.push(`${id}: ⚠️ 이미 수령된 코드`);
-        } else if (text.includes("성공적으로 수령하셨습니다")) {
-          newResults.push(`${id}: ✅ 성공`);
-        } else if (text.includes("올바르지 않은 IGGID")) {
-          newResults.push(`${id}: ❌ IGG ID 오류`);
-        } else if (text.includes("존재하지 않는 코드")) {
-          newResults.push(`${id}: ❌ 유효하지 않은 코드`);
-        } else {
-          newResults.push(`${id}: ❓ 기타 - ${text}`);
-        }
       } catch (err) {
         newResults.push(`${id}: ⚠️ 네트워크 오류 (${err.message})`);
       }
