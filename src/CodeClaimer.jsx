@@ -23,10 +23,10 @@ function CodeClaimer({ iggIds }) {
         //formData.append("action", "claim_cdkey");
         //formData.append("lang", "kor");
 
-        const response = await axios.post("https://dut.igg.com/event/code?lang=kor", formData.toString(), {
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
+        const response = await axios.post("/api/claim", formData.toString(), {
+            headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  },
         });
 
         const text = res.data;
