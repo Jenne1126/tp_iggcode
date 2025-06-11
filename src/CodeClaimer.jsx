@@ -42,7 +42,7 @@ function CodeClaimer({ iggIds }) {
 
   if (msg.includes("이미 수령하셨습니다") || msg.includes("보상을 수령하였습니다")) {
     newResults.push(`${id}: ⚠️ ${msg}`);
-  } else if (msg.includes("성공적으로 수령하셨습니다")) {
+  } else if (msg.includes("교환 성공")) {
     newResults.push(`${id}: ✅ 성공`);
   } else if (msg.includes("올바르지 않은 IGGID")) {
     newResults.push(`${id}: ❌ IGG ID 오류`);
