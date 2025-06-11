@@ -16,15 +16,17 @@ function CodeClaimer({ iggIds }) {
     for (let id of iggIds) {
       try {
         const formData = new URLSearchParams();
-        formData.append("action", "claim_cdkey");
-        formData.append("cdkey", code);
         formData.append("iggid", id);
-        formData.append("lang", "kor");
+        formData.append("cdkey", code);
+        formData.append("username", "");
+        formData.append("sign", "0");
+        //formData.append("action", "claim_cdkey");
+        //formData.append("lang", "kor");
 
-        const res = await axios.post("/api/claim", formData.toString(), {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
+        const response = await axios.post("https://dut.igg.com/event/code?lang=kor", formData.toString(), {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
         });
 
         const text = res.data;
