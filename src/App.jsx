@@ -23,6 +23,7 @@ function App() {
         alignItems: "center",
         padding: "2rem",
         fontFamily: "Arial",
+        fontSize: "2rem",
         backgroundColor: "#f9f9f9",
       }}
     >

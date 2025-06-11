@@ -15,7 +15,7 @@ function IGGIDManager({ iggIds, setIggIds }) {
   };
 
   return (
-    <div style={{ width: "100%", maxWidth: "90vw" }}>
+    <div style={{ width: "100%", maxWidth: "50vw" }}>
       <h3>📑 IGG ID 목록</h3>
       <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
         <input

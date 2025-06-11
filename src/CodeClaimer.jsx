@@ -64,7 +64,7 @@ function CodeClaimer({ iggIds }) {
   };
 
   return (
-    <div style={{ marginBottom: "2rem", width: "100%", maxWidth: "90vw" }}>
+    <div style={{ marginBottom: "2rem", width: "100%", maxWidth: "50vw" }}>
       <h3>💳 쿠폰 코드 입력</h3>
       <div style={{ display: "flex", gap: "0.5rem" }}>
         <input
@@ -78,7 +78,7 @@ function CodeClaimer({ iggIds }) {
           disabled={loading}
           style={{
             padding: "8px 12px",
-            fontSize: "14px",
+            fontSize: "1.5rem",
             backgroundColor: "#4CAF50",
             color: "white",
             border: "none",
