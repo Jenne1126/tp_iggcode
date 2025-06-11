@@ -19,7 +19,7 @@ function CodeClaimer({ iggIds }) {
         formData.append("action", "claim_cdkey");
         formData.append("cdkey", code);
         formData.append("iggid", id);
-        formData.append("lang", "ko");
+        formData.append("lang", "kor");
 
         const res = await axios.post("/api/claim", formData.toString(), {
           headers: {
